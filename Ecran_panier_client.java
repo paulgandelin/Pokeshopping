@@ -158,3 +158,20 @@ public class Ecran_panier_client extends JFrame {
         // ✏ Bouton modifier l'adresse
         JButton btnModifierAdresse = new JButton("✏ Modifier l'adresse de livraison");
         btnModifierAdresse.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnModifierAdresse.addActionListener(e -> {
+            String nouvelleAdresse = JOptionPane.showInputDialog(
+                    this,
+                    "Nouvelle adresse de livraison :",
+                    adresseLivraison
+            );
+
+            if (nouvelleAdresse != null && !nouvelleAdresse.trim().isEmpty()) {
+                for (Commande cmd : commandesNonPayees) {
+                    cmd.setLieuLivraison(nouvelleAdresse.trim());
+                    commandeDAO.modifierAdresse(cmd.getIdCommande(), nouvelleAdresse.trim()); // 🔧 À implémenter
+                }
+                JOptionPane.showMessageDialog(this, "Adresse mise à jour !");
+                dispose();
+                new Ecran_panier_client(client, daoFactory);
+            }
+        });

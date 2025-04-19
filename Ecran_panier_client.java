@@ -51,3 +51,29 @@ public class Ecran_panier_client extends JFrame {
             aucun.setHorizontalAlignment(SwingConstants.CENTER);
             panelCommandes.add(aucun);
         } else {
+            for (Commande cmd : commandesNonPayees) {
+                Produit produit = produitDAO.chercher_id(cmd.getIdProduit());
+                double prixCommande = calculprix(produit,cmd.getQuantite());
+                total += prixCommande;
+
+                JPanel carteCommande = new JPanel(new BorderLayout());
+                carteCommande.setBorder(BorderFactory.createTitledBorder("Commande #" + cmd.getIdCommande()));
+                carteCommande.setPreferredSize(new Dimension(550, 150));
+
+                JLabel infos = new JLabel(
+                        "<html><b>Produit :</b> " + produit.getProduit_nom() +
+                                "<br><b>Prix unitaire :</b> " + produit.getProduit_prix() + " €" +
+                                "<br><b>Quantité :</b> " + cmd.getQuantite() +
+                                "<br><b>Total :</b> " + prixCommande + " €" +
+                                "</html>"
+                );
+                infos.setFont(new Font("SansSerif", Font.PLAIN, 14));
+                carteCommande.add(infos, BorderLayout.CENTER);
+                // ➕ Modifier quantité
+                JButton btnModifier = new JButton("✏ Modifier");
+                btnModifier.addActionListener(e -> {
+                    String nouvelleQuantiteStr = JOptionPane.showInputDialog(
+                            this,
+                            "Nouvelle quantité pour " + produit.getProduit_nom(),
+                            cmd.getQuantite()
+                    );

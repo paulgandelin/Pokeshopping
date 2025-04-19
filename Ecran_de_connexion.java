@@ -66,3 +66,35 @@ public class Ecran_de_connexion extends JFrame {
         gbc.gridwidth = 2;
         add(boutonInscription, gbc);
 
+        // Action du bouton Connexion
+        boutonConnexion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String utilisateur = champUtilisateur.getText();
+                String motDePasse = new String(champMotDePasse.getPassword());
+
+                if (secu.connexion_compte_securite(daoFactory, utilisateur, motDePasse)) {
+                    JOptionPane.showMessageDialog(Ecran_de_connexion.this, "Connexion réussie !");
+                    dispose();
+                    pers=new PersonneDAOImpl(daoFactory);
+                    client=pers.chercher_adresse_mail(utilisateur);
+                    new Ecran_principal(client,daoFactory);
+                } else {
+                    JOptionPane.showMessageDialog(Ecran_de_connexion.this, "Identifiants incorrects !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Action du bouton Créer un compte
+        boutonInscription.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Ferme l'écran actuel
+                new Ecran_Inscription( daoFactory); // Ouvre l'écran d'inscription
+            }
+        });
+
+        setVisible(true);
+    }
+}
+

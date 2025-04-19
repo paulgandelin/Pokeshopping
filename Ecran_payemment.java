@@ -131,3 +131,19 @@ public class Ecran_payemment extends JFrame {
                 JOptionPane.showMessageDialog(this, "Date d'expiration invalide.");
                 return;
             }
+            JOptionPane.showMessageDialog(this, "Paiement réussi. Merci !");
+            dispose();
+            new Ecran_principal(client, daoFactory);
+        });
+
+        btnAnnuler.addActionListener(e -> {
+            dispose();
+        });
+
+        panelButtons.add(btnPayer);
+        panelButtons.add(btnAnnuler);
+
+        add(panelButtons, BorderLayout.SOUTH);
+
+        setVisible(true);
+    }

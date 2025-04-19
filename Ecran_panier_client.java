@@ -33,3 +33,21 @@ public class Ecran_panier_client extends JFrame {
             dispose();
             new Ecran_principal(client, daoFactory);
         });
+
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        topPanel.add(btnRetour);
+        add(topPanel, BorderLayout.NORTH);
+
+        // 🧾 Centre : commandes
+        JPanel panelCommandes = new JPanel();
+        panelCommandes.setLayout(new BoxLayout(panelCommandes, BoxLayout.Y_AXIS));
+
+        double total = 0.0;
+        String adresseLivraison = commandesNonPayees.isEmpty() ? "N/A" : commandesNonPayees.get(0).getLieuLivraison();
+
+        if (commandesNonPayees.isEmpty()) {
+            JLabel aucun = new JLabel("Aucune commande en attente de paiement.");
+            aucun.setFont(new Font("Arial", Font.BOLD, 18));
+            aucun.setHorizontalAlignment(SwingConstants.CENTER);
+            panelCommandes.add(aucun);
+        } else {

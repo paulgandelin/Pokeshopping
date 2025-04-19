@@ -43,3 +43,26 @@ public class Ecran_de_connexion extends JFrame {
         champUtilisateur = new JTextField(15);
         gbc.gridx = 1;
         add(champUtilisateur, gbc);
+
+        // Champ mot de passe
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        add(new JLabel("Mot de passe:"), gbc);
+        champMotDePasse = new JPasswordField(15);
+        gbc.gridx = 1;
+        add(champMotDePasse, gbc);
+
+        // Bouton Connexion
+        boutonConnexion = new JButton("Connexion");
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        add(boutonConnexion, gbc);
+
+        // Bouton Créer un compte
+        boutonInscription = new JButton("Créer un compte");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        add(boutonInscription, gbc);
+

@@ -81,3 +81,14 @@ public class Ecran_payemment extends JFrame {
                 JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.");
                 return;
             }
+            // 🧠 Vérif numéro de carte : 16 chiffres
+            if (!numCarte.matches("\\d{16}")) {
+                JOptionPane.showMessageDialog(this, "Le numéro de carte doit contenir 16 chiffres.");
+                return;
+            }
+
+            // 📆 Vérif date d’expiration (MM/AA)
+            if (!dateExp.matches("\\d{2}/\\d{2}")) {
+                JOptionPane.showMessageDialog(this, "La date d'expiration doit être au format MM/AA.");
+                return;
+            }

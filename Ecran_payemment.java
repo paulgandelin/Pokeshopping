@@ -66,3 +66,18 @@ public class Ecran_payemment extends JFrame {
         panelForm.add(new JLabel()); // vide
 
         add(panelForm, BorderLayout.CENTER);
+         // 🔘 Boutons
+        JPanel panelButtons = new JPanel();
+        JButton btnPayer = new JButton("✅ Payer");
+        JButton btnAnnuler = new JButton("❌ Annuler");
+
+        btnPayer.addActionListener(e -> {
+            String numCarte = txtNumCarte.getText().trim();
+            String dateExp = txtDateExp.getText().trim();
+            String cvv = new String(txtCVV.getPassword()).trim();
+            String nom = txtNomTitulaire.getText().trim();
+
+            if (numCarte.isEmpty() || dateExp.isEmpty() || cvv.isEmpty() || nom.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs.");
+                return;
+            }

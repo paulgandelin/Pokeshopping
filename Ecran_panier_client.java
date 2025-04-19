@@ -104,3 +104,21 @@ public class Ecran_panier_client extends JFrame {
                         JOptionPane.showMessageDialog(this, "Quantité invalide.");
                     }
                 });
+
+                // 🗑 Supprimer commande
+                JButton btnSupprimer = new JButton("🗑 Supprimer");
+                btnSupprimer.addActionListener(e -> {
+                    int confirm = JOptionPane.showConfirmDialog(
+                            this,
+                            "Voulez-vous vraiment supprimer cette commande ?",
+                            "Confirmation",
+                            JOptionPane.YES_NO_OPTION
+                    );
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        commandeDAO.supprimer(cmd);
+                        JOptionPane.showMessageDialog(this, "Commande supprimée.");
+                        dispose();
+                        new Ecran_panier_client(client, daoFactory); // refresh
+                    }
+                });

@@ -110,6 +110,23 @@ public class Ecran_payemment extends JFrame {
                     return;
                 }
 
+                if (!cvv.matches("\\d{3}")) {
+                JOptionPane.showMessageDialog(this, "Le CVV doit contenir 3 chiffres.");
+                return;
+            }
+
+            // 💳 Paiement simulé
+            CommandeDAOImpl commandeDAO = new CommandeDAOImpl(daoFactory);
+            ProduitDAOImpl produiDAO = new ProduitDAOImpl(daoFactory);
+            Produit produit;
+            int nouvelle_quantite;
+            for (Commande cmd : commandesNonPayees) {
+                commandeDAO.marquerCommePayee(cmd.getIdCommande());
+                produit = produitDAO.chercher_id(cmd.getIdProduit());
+                nouvelle_quantite = produit.getQuantite()-cmd.getQuantite();
+                produiDAO.modifierQuantiteProduit(cmd.getIdProduit(), nouvelle_quantite);
+            }
+
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Date d'expiration invalide.");
                 return;

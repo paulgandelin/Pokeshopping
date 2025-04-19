@@ -77,3 +77,30 @@ public class Ecran_panier_client extends JFrame {
                             "Nouvelle quantité pour " + produit.getProduit_nom(),
                             cmd.getQuantite()
                     );
+
+                    try {
+                        if (nouvelleQuantiteStr != null) {
+                            int nouvelleQuantite = Integer.parseInt(nouvelleQuantiteStr);
+                            if (nouvelleQuantite > 0) {
+                                int stockDisponible = produit.getQuantite();
+                                if (nouvelleQuantite <= stockDisponible) {
+                                    cmd.setQuantite(nouvelleQuantite);
+                                    commandeDAO.modifierQuantite(cmd.getIdCommande(), nouvelleQuantite);
+                                    JOptionPane.showMessageDialog(this, "Quantité mise à jour !");
+                                    dispose();
+                                    new Ecran_panier_client(client, daoFactory); // refresh écran
+                                } else {
+                                    JOptionPane.showMessageDialog(this,
+                                            "Stock insuffisant. Il reste seulement " + stockDisponible + " unité(s) en stock.",
+                                            "Erreur de stock",
+                                            JOptionPane.WARNING_MESSAGE);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "La quantité doit être supérieure à 0.");
+                            }
+
+                        }
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(this, "Quantité invalide.");
+                    }
+                });

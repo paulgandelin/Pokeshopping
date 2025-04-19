@@ -92,3 +92,25 @@ public class Ecran_payemment extends JFrame {
                 JOptionPane.showMessageDialog(this, "La date d'expiration doit être au format MM/AA.");
                 return;
             }
+            try {
+                String[] dateParts = dateExp.split("/");
+                int mois = Integer.parseInt(dateParts[0]);
+                int annee = Integer.parseInt(dateParts[1]) + 2000; // conversion 25 -> 2025
+
+                if (mois < 1 || mois > 12) {
+                    throw new NumberFormatException();
+                }
+
+                java.util.Calendar now = java.util.Calendar.getInstance();
+                int moisActuel = now.get(java.util.Calendar.MONTH) + 1;
+                int anneeActuelle = now.get(java.util.Calendar.YEAR);
+
+                if (annee < anneeActuelle || (annee == anneeActuelle && mois < moisActuel)) {
+                    JOptionPane.showMessageDialog(this, "La carte est expirée.");
+                    return;
+                }
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Date d'expiration invalide.");
+                return;
+            }

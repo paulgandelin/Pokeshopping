@@ -175,3 +175,23 @@ public class Ecran_panier_client extends JFrame {
                 new Ecran_panier_client(client, daoFactory);
             }
         });
+        btnPayerTout.addActionListener(e -> {
+            for (Commande cmd : commandesNonPayees) {
+                commandeDAO.marquerCommePayee(cmd.getIdCommande());
+            }
+            JOptionPane.showMessageDialog(this, "Toutes les commandes ont été payées !");
+            new Ecran_payemment( daoFactory,commandesNonPayees,client);
+        });
+        basPanel.add(lblAdresse);
+        basPanel.add(Box.createVerticalStrut(5));
+        basPanel.add(btnModifierAdresse);
+        basPanel.add(lblAdresse);
+        basPanel.add(Box.createVerticalStrut(10));
+        basPanel.add(lblTotal);
+        basPanel.add(Box.createVerticalStrut(10));
+        basPanel.add(btnPayerTout);
+
+        add(basPanel, BorderLayout.SOUTH);
+
+        setVisible(true);
+    }

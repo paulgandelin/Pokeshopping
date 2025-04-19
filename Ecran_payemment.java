@@ -42,3 +42,27 @@ public class Ecran_payemment extends JFrame {
 
         JLabel lblNomTitulaire = new JLabel("Nom du titulaire :");
         JTextField txtNomTitulaire = new JTextField();
+
+        panelForm.add(lblNumCarte);
+        panelForm.add(txtNumCarte);
+        panelForm.add(lblDateExp);
+        panelForm.add(txtDateExp);
+        panelForm.add(lblCVV);
+        panelForm.add(txtCVV);
+        panelForm.add(lblNomTitulaire);
+        panelForm.add(txtNomTitulaire);
+
+        // 🧾 Total
+        double total = 0.0;
+        ProduitDAOImpl produitDAO = new ProduitDAOImpl(daoFactory);
+        for (Commande cmd : commandesNonPayees) {
+            Produit p = produitDAO.chercher_id(cmd.getIdProduit());
+            total += calculprix(p, cmd.getQuantite());
+        }
+
+        JLabel lblTotal = new JLabel("Total : " + String.format("%.2f", total) + " €");
+        lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
+        panelForm.add(lblTotal);
+        panelForm.add(new JLabel()); // vide
+
+        add(panelForm, BorderLayout.CENTER);

@@ -136,3 +136,25 @@ public class Ecran_panier_client extends JFrame {
             }
         }
                 });
+        JScrollPane scrollPane = new JScrollPane(panelCommandes);
+        add(scrollPane, BorderLayout.CENTER);
+
+        // 🔻 Bas : total + bouton de paiement + adresse
+        JPanel basPanel = new JPanel();
+        basPanel.setLayout(new BoxLayout(basPanel, BoxLayout.Y_AXIS));
+        basPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel lblAdresse = new JLabel("📦 Livraison à : " + adresseLivraison);
+        lblAdresse.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblAdresse.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel lblTotal = new JLabel("💰 Total à payer : " + String.format("%.2f", total) + " €");
+        lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTotal.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnPayerTout = new JButton("💳 Payer toutes les commandes");
+        btnPayerTout.setFont(new Font("Arial", Font.BOLD, 16));
+        btnPayerTout.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // ✏ Bouton modifier l'adresse
+        JButton btnModifierAdresse = new JButton("✏ Modifier l'adresse de livraison");
+        btnModifierAdresse.setAlignmentX(Component.CENTER_ALIGNMENT);

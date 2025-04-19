@@ -147,3 +147,20 @@ public class Ecran_payemment extends JFrame {
 
         setVisible(true);
     }
+    private double calculprix(Produit produit, int quantite) {
+        int seuil = produit.getQuantite_reduit();
+        double prixReduit = produit.getPrix_reduit();
+        double prixNormal = produit.getProduit_prix();
+        double prix=0;
+        if (seuil==0) {
+            prix =quantite*prixNormal;
+        }
+        else{
+            int packsReduits = quantite / seuil;
+            int resteNormal = quantite % seuil;
+            prix = (packsReduits *seuil* prixReduit) + (resteNormal * prixNormal);
+        }
+        return prix;
+    }
+}
+

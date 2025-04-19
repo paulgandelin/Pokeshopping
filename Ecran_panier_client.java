@@ -121,4 +121,18 @@ public class Ecran_panier_client extends JFrame {
                         dispose();
                         new Ecran_panier_client(client, daoFactory); // refresh
                     }
+
+                               // Panel boutons à droite
+                JPanel panelBoutons = new JPanel();
+                panelBoutons.setLayout(new BoxLayout(panelBoutons, BoxLayout.Y_AXIS));
+                panelBoutons.add(btnModifier);
+                panelBoutons.add(Box.createVerticalStrut(10));
+                panelBoutons.add(btnSupprimer);
+
+                carteCommande.add(panelBoutons, BorderLayout.EAST);
+
+                panelCommandes.add(carteCommande);
+                panelCommandes.add(Box.createVerticalStrut(10));
+            }
+        }
                 });

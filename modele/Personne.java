@@ -6,16 +6,25 @@ public class Personne {
     private String mail_client;
     private String mdp_client;
     private String adresse_postale_client;
-    private boolean identifiant_admin;
+    private int identifiant_admin;
 
     // constructeur
-    public Personne(int ID_client, String nom_client, String mail_client, String mdp_client, String adresse_postale_client, boolean identifiant_admin)
+    public Personne(int ID_client, String nom_client, String mail_client, String mdp_client, String adresse_postale_client, int identifiant_admin)
     {
         this.ID_personne = ID_client;
         this.nom_client = nom_client;
         this.mail_client = mail_client;
         this.mdp_client = mdp_client;
         this.adresse_postale_client = adresse_postale_client;
+        this.identifiant_admin=identifiant_admin;
+    }
+    public Personne(int ID_client, String nom_client, String mail_client, String mdp_client, int identifiant_admin)
+    {
+        this.ID_personne = ID_client;
+        this.nom_client = nom_client;
+        this.mail_client = mail_client;
+        this.mdp_client = mdp_client;
+        adresse_postale_client = "";
         this.identifiant_admin=identifiant_admin;
     }
 
@@ -36,7 +45,7 @@ public class Personne {
     public String getAdresse_postale_client() {
         return adresse_postale_client;
     }
-    public boolean getIdentifiant_admin() {
+    public int getIdentifiant_admin() {
         return identifiant_admin;
     }
 
@@ -57,7 +66,7 @@ public class Personne {
     public void setAdresse_postale_client(String adresse_postale_client) {
         this.adresse_postale_client = adresse_postale_client;
     }
-    public void setidentifiant_admin(boolean identifiant_admin) {
+    public void setidentifiant_admin(int identifiant_admin) {
         this.identifiant_admin = identifiant_admin;
     }
 }

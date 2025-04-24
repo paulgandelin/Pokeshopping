@@ -2,7 +2,7 @@ package Controleur;
 
 import Dao.DaoFactory;
 import Dao.ProduitDAOImpl;
-import  modele.*;
+import modele.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -21,7 +21,7 @@ public class Affichage {
         produits=produitDAO.getAll();
         return produits;
     }
-    public ArrayList<Produit> affichage_produit_cherhcer(String chercher) {
+    public ArrayList<Produit> affichage_produit_chercher(String chercher) {
         ProduitDAOImpl produitDAO;
         ArrayList<Produit> produits1, produits2, produits3;
         ArrayList<Produit> produits = new ArrayList<>();

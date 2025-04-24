@@ -1,6 +1,6 @@
 package Controleur;
 import Dao.*;
-import  modele.*;
+import modele.*;
 import java.sql.*;
 import java.util.*;
 
